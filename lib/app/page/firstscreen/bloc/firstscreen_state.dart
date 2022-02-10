@@ -1,25 +1,27 @@
 import 'package:DemoApp/domain/entities/game.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'firstscreen_state.freezed.dart';
 
-abstract class FirstScreenState extends Equatable {
-  const FirstScreenState();
-
-  @override
-  List<Object> get props => [];
+@freezed
+abstract class FirstScreenState with _$FirstScreenState {
+  const factory FirstScreenState.listGameState(List<Game> listGame) =
+      ListGameState;
+  const factory FirstScreenState.getListGameFailState(String errorMessage) =
+      GetListGameErrorState;
 }
 
-class ListGameState extends FirstScreenState {
-  final List<Game> listGame;
-  ListGameState({required this.listGame}) : super();
+// class ListGameState extends FirstScreenState {
+//   final List<Game> listGame;
+//   ListGameState({required this.listGame}) : super();
 
-  @override
-  List<Object> get props => [listGame];
-}
+//   @override
+//   List<Object> get props => [listGame];
+// }
 
-class GetListGameErrorState extends FirstScreenState {
-  final errorMessage;
-  GetListGameErrorState({required this.errorMessage}) : super();
+// class GetListGameErrorState extends FirstScreenState {
+//   final errorMessage;
+//   GetListGameErrorState({required this.errorMessage}) : super();
 
-  @override
-  List<Object> get props => [errorMessage];
-}
+//   @override
+//   List<Object> get props => [errorMessage];
+// }

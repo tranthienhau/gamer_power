@@ -5,14 +5,15 @@ void main() {
   group('FirstScreenState', () {
     group('ListGameState', () {
       test('supports value comparison', () {
-        expect(ListGameState(listGame: []), ListGameState(listGame: []));
+        expect(FirstScreenState.listGameState([]),
+            FirstScreenState.listGameState([]));
       });
     });
 
     group('GetListGameErrorState', () {
       test('supports value comparison', () {
-        expect(GetListGameErrorState(errorMessage: 'Test Error'),
-            GetListGameErrorState(errorMessage: 'Test Error'));
+        expect(FirstScreenState.getListGameFailState('Test Error'),
+            FirstScreenState.getListGameFailState('Test Error'));
       });
     });
   });

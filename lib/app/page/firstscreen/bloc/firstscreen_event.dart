@@ -1,13 +1,7 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'firstscreen_event.freezed.dart';
 
-abstract class FirstScreenEvent extends Equatable {
-  const FirstScreenEvent();
-
-  @override
-  List<Object> get props => [];
-}
-
-class GetListGames extends FirstScreenEvent {
-  @override
-  List<Object> get props => [];
+@freezed
+abstract class FirstScreenEvent with _$FirstScreenEvent {
+  const factory FirstScreenEvent.fetchListGame() = GetListGames;
 }

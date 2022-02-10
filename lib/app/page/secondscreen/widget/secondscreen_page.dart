@@ -10,12 +10,12 @@ class SecondScreenPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _buildBody(),
+      body: _buildBody(context),
       backgroundColor: Colors.blueGrey,
     );
   }
 
-  Widget _buildBody() {
+  Widget _buildBody(BuildContext context) {
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -24,13 +24,31 @@ class SecondScreenPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  iconSize: 40,
+                  icon: Icon(Icons.arrow_back),
+                  color: Colors.white,
+                ),
+                SizedBox(width: 5.w),
+                Expanded(
+                    child: Text(game.title,
+                        style:
+                            boldSFTextStyle(size: 24.sp, color: Colors.white))),
+                SizedBox(width: 5.w),
+                SizedBox(width: 40)
+              ],
+            ),
             SizedBox(
                 width: double.infinity,
                 height: 200.h,
                 child: Image.network(game.image)),
-            Text(game.title,
-                style: boldSFTextStyle(size: 24.sp, color: Colors.white)),
-            SizedBox(height: 5.h),
             Text('Platforms: ${game.platforms}',
                 style: mediumSFTextStyle(size: 18.sp, color: Colors.white),
                 textAlign: TextAlign.start),

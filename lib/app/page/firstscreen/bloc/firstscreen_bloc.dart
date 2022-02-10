@@ -13,14 +13,12 @@ class FirstScreenBloc extends Bloc<FirstScreenEvent, FirstScreenState> {
       this._dialogService)
       : super(initialState);
 
-  FirstScreenState get initialState => ListGameState(listGame: []);
+  FirstScreenState get initialState => FirstScreenState.listGameState([]);
 
   @override
   Stream<FirstScreenState> mapEventToState(FirstScreenEvent event) async* {
-    switch (event.runtimeType) {
-      case GetListGames:
-        yield* _mapGetListGameToState(event as GetListGames);
-        break;
+    if (event is GetListGames) {
+      yield* _mapGetListGameToState(event);
     }
   }
 
@@ -29,10 +27,10 @@ class FirstScreenBloc extends Bloc<FirstScreenEvent, FirstScreenState> {
     try {
       List<Game> listGame = await _fetchGamesUseCase.perform();
       _dialogService.hideLoading();
-      yield ListGameState(listGame: listGame);
+      yield FirstScreenState.listGameState(listGame);
     } catch (error) {
       _dialogService.hideLoading();
-      yield GetListGameErrorState(errorMessage: error.toString());
+      yield FirstScreenState.getListGameFailState(error.toString());
     }
   }
 }

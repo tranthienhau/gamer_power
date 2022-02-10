@@ -36,6 +36,6 @@ void _setupUseCases() {
 
 /// Register all bloc in IoC
 void _setupBloc() {
-  locator.registerFactory<FirstScreenBloc>(
-      () => FirstScreenBloc(ListGameState(listGame: []), locator(), locator()));
+  locator.registerFactory<FirstScreenBloc>(() => FirstScreenBloc(
+      FirstScreenState.listGameState([]), locator(), locator()));
 }

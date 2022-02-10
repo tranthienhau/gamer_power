@@ -2,7 +2,6 @@ import 'package:DemoApp/app/page/firstscreen/bloc/firstscreen_bloc.dart';
 import 'package:DemoApp/app/page/firstscreen/bloc/firstscreen_event.dart';
 import 'package:DemoApp/app/page/firstscreen/bloc/firstscreen_state.dart';
 import 'package:DemoApp/app/services/dialog_service.dart';
-import 'package:DemoApp/app/services/navigation_service.dart';
 import 'package:DemoApp/domain/domain.dart';
 import 'package:DemoApp/domain/entities/game.dart';
 import 'package:bloc_test/bloc_test.dart';
@@ -59,12 +58,12 @@ void main() {
             .thenAnswer((realInvocation) async => true);
         when(mockDialogService.hideLoading())
             .thenAnswer((realInvocation) async => true);
-        return FirstScreenBloc(ListGameState(listGame: []),
+        return FirstScreenBloc(FirstScreenState.listGameState([]),
             mockFetchGamesUseCase, mockDialogService);
       },
       act: (bloc) => bloc.add(GetListGames()),
       expect: () => <FirstScreenState>[
-        ListGameState(listGame: [demoReturnGame])
+        FirstScreenState.listGameState([demoReturnGame])
       ],
     );
 
@@ -76,12 +75,12 @@ void main() {
             .thenAnswer((realInvocation) async => true);
         when(mockDialogService.hideLoading())
             .thenAnswer((realInvocation) async => true);
-        return FirstScreenBloc(ListGameState(listGame: []),
+        return FirstScreenBloc(FirstScreenState.listGameState([]),
             mockFetchGamesUseCase, mockDialogService);
       },
       act: (bloc) => bloc.add(GetListGames()),
       expect: () => <FirstScreenState>[
-        GetListGameErrorState(errorMessage: errorMessageTest)
+        FirstScreenState.getListGameFailState(errorMessageTest)
       ],
     );
   });
